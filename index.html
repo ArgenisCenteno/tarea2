@@ -123,19 +123,35 @@
         <div class="header__content">
           <div>
             <p class="sub__header">Primero</p>
-            <h1>Multiplica 😊<br />dos numeros</h1>
+            <h1>Tablas de multiplicar 😊<br /> </h1>
             <p class="section__subtitle">
-             Ingresa los datos
+             Seleccione la tabla
             </p>
             <div class="action__btns">
                
               <div class="story">
                 <div class="video__image">
-                  <input type="number"  step="any" placeholder="Ingresa numero"/>
-                  <input  type="number" step="any" placeholder="Ingresa número"/>
-                  <span><i class="ri-play-fill"></i></span>
+                  <div class="input-group">
+                    <label for="tabla">Seleccione tabla</label>
+                    <select id="tabla">
+                      <option value="1">Tabla del 1</option>
+                      <option value="2">Tabla del 2</option>
+                      <option value="3">Tabla del 3</option>
+                      <option value="4">Tabla del 4</option>
+                      <option value="5">Tabla del 5</option>
+                      <option value="6">Tabla del 6</option>
+                      <option value="7">Tabla del 7</option>
+                      <option value="8">Tabla del 8</option>
+                      <option value="9">Tabla del 9</option>
+                    </select>
+                  </div>
+                  
+                  <button id="calcularBtn2">Aceptar</button>
                 </div>
-                <span id="span">Resultado</span>
+                <span>Resultado: <span id="resultado2"></span></span>
+                  
+                </div>
+                
               </div>
             </div>
           </div>
@@ -333,5 +349,27 @@
       const time = distance / speed;
       timeResult.textContent = `Tiempo de recorrido: ${time.toFixed(2)} horas`;
     });
+
+    const tablaSelect = document.getElementById("tabla");
+  const calcularBtn2 = document.getElementById("calcularBtn2");
+  const resultadoSpan2 = document.getElementById("resultado2");
+
+  calcularBtn2.addEventListener("click", function() {
+    const tablaSeleccionada = parseInt(tablaSelect.value);
+
+    if (tablaSeleccionada < 1 || tablaSeleccionada > 9) {
+      resultadoSpan.textContent = "Por favor, seleccione una tabla válida.";
+      return;
+    }
+
+    let resultado = "";
+    for (let i = 1; i <= 10; i++) {
+      resultado += `${tablaSeleccionada} x ${i} = ${tablaSeleccionada * i}<br>`;
+    }
+
+    resultadoSpan2.innerHTML = resultado;
   });
+  });
+
+
 </script>
