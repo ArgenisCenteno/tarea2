@@ -237,7 +237,48 @@
         </div>
       </div>
     </section>
-
+    <section class="trip">
+      <div class="section__container trip__container">
+        <h2 class="section__title">Cuarto</h2>
+        <p class="section__subtitle">
+         Determinar si una persona tiene sobrepeso
+        </p>
+        
+        <div class="age__calculator">
+          <div class="input-group" style="margin-right: 12px;">
+            <label for="fecha"> <strong>Altura</strong> </label>
+            <input type="number" id="altura" placeholder="Altura (cm)" required>
+          </div>
+          <div class="input-group" style="margin-right: 12px;">
+            <label for="fecha"> <strong>Peso</strong> </label>
+            <input type="number" id="PesoActual" placeholder="Peso actual (Kg)" required>
+          </div>
+          <button class="calculate__btn" id="calcularResultadoPeso" style="margin-right: 12px;">Calcular</button>
+          <p  >  <span id="resultadoPesoActual"></span></p>
+        </div>
+      </div>
+    </section>
+    <section class="trip">
+      <div class="section__container trip__container">
+        <h2 class="section__title">Quinto</h2>
+        <p class="section__subtitle">
+          Balanza de precios
+        </p>
+        
+        <div class="age__calculator">
+          <div class="input-group" style="margin-right: 12px;">
+            <label for="fecha"> <strong>Precio Bs</strong> </label>
+            <input type="number" id="costoAlimento" placeholder="Precio (bs)" required>
+          </div>
+          <div class="input-group" style="margin-right: 12px;">
+            <label for="fecha"> <strong>Peso en g</strong> </label>
+            <input type="number" id="pesoAlimento" placeholder="Peso (gr)" required>
+          </div>
+          <button class="calculate__btn" id="calcularPrecioPorPeso" style="margin-right: 12px;">Calcular</button>
+          <p> <span id="resultadoPrecioPorPeso"></span></p>
+        </div>
+      </div>
+    </section>
     
 
     <footer class="footer">
@@ -369,6 +410,35 @@
 
     resultadoSpan2.innerHTML = resultado;
   });
+  document.getElementById('calcularResultadoPeso').addEventListener('click', function() {
+    var altura = parseFloat(document.getElementById('altura').value) / 100; // Convertir altura a metros
+    var pesoActual = parseFloat(document.getElementById('PesoActual').value);
+
+    var imc = pesoActual / (altura * altura);
+
+    var pesoIdeal = 24.9 * (altura * altura);
+
+    var resultadoPesoActual = document.getElementById('resultadoPesoActual');
+
+    if (imc > 24.9) {
+        resultadoPesoActual.textContent = 'Tiene sobrepeso. Su peso ideal debería ser aproximadamente ' + pesoIdeal.toFixed(2) + ' Kg.';
+    } else {
+        resultadoPesoActual.textContent = 'Su peso está dentro del rango saludable.';
+    }
+});
+
+document.getElementById('calcularPrecioPorPeso').addEventListener('click', function() {
+    var costoAlimento = parseFloat(document.getElementById('costoAlimento').value);
+    var pesoAlimento = parseFloat(document.getElementById('pesoAlimento').value);
+
+    var montoTotal =      costoAlimento * pesoAlimento / 1000; // Calcular monto total en bolívares
+    var costoEnDolares = montoTotal / 36.40; // Convertir monto total a dólares
+
+    var resultadoPrecioPorPeso = document.getElementById('resultadoPrecioPorPeso');
+    resultadoPrecioPorPeso.textContent = 'Costo en Bs: ' + montoTotal.toFixed(2) + ' .';
+    resultadoPrecioPorPeso.textContent += '\nCosto en dólares: $' + costoEnDolares.toFixed(2);
+});
+
   });
 
 
